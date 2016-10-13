@@ -12,12 +12,20 @@ function Address(street, city, state) {
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street = ", " + this.city + ", " + address.state;
+  return this.street + ", " + this.city + ", " + this.state;
 }
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
+
+function resetFields() {
+    $("input#new-first-name").val("");
+    $("input#new-last-name").val("");
+    $("input.new-street").val("");
+    $("input.new-city").val("");
+    $("input.new-state").val("");
+    }
 
 // user interface logic
 $(document).ready(function() {
@@ -25,6 +33,7 @@ $(document).ready(function() {
   $("#add-address").click(function(){
     $("#new-addresses").append('<div class="new-address">' +
                                  '<div class="form-group">' +
+                                  '<label for="new-street">Street</label>' +
                                   '<input type="text" class="form-control new-street">' +
                                 '</div>' +
                                 '<div class="form-group">' +
@@ -49,7 +58,7 @@ $(document).ready(function() {
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
       var inputtedState = $(this).find("input.new-state").val();
-      var newAddress = new Address(inputtedStreet, inpuuttedCity, inputtedState);
+      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
       newContact.addresses.push(newAddress);
     });
 
@@ -66,15 +75,11 @@ $(document).ready(function() {
       });
     });
 
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input.new-street").val("");
-    $("input.new-city").val("");
-    $("input.new-state").val("");
+    $("#show-contact").css('background-color', 'yellow');
+    $("#show-contact").css({'border-color': 'orange',
+                            'border-width': '5px',
+                            'border-style': 'solid'});
 
+    resetFields()
   });
 });
-
-$(document).ready(function(){
-
-})
