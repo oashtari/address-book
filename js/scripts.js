@@ -10,6 +10,11 @@ function Address(street, city, state) {
   this.city = city;
   this.state = state;
 }
+
+Address.prototype.fullAddress = function() {
+  return this.street = ", " + this.city + ", " + address.state;
+}
+
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
@@ -57,7 +62,7 @@ $(document).ready(function() {
       $(".last-name").text(newContact.lastName);
       $("ul#addresses").text("");
       newContact.addresses.forEach(function(address){
-        $("ul#addresses").append("<li>" + address.street + ", " + address.city + " " + address.state + "</li>");
+        $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
     });
 
